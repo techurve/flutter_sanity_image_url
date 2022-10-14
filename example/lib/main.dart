@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_sanity/flutter_sanity.dart';
 import 'package:flutter_sanity_image_url/flutter_sanity_image_url.dart';
+import 'package:sanity_image_app/sanity_image.dart';
 
 final sanityClient =
     SanityClient(projectId: "projectId", dataset: "production");

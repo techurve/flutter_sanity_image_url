@@ -1,92 +1,138 @@
 library flutter_sanity_image_url;
 
-import 'package:flutter/material.dart';
+import 'package:flutter_sanity_image_url/url_for_image.dart';
 
 class ImageUrlBuilder {
-  ImageUrlBuilder({ImageUrlBuilderOptions? options})
-      : options = options ?? ImageUrlBuilderOptions();
+  const ImageUrlBuilder(this.client, {this.asset, Map<String, dynamic>? params})
+      : params = params ?? const {};
 
-  ImageUrlBuilderOptions options;
+  final dynamic client;
+  final Map<String, dynamic>? asset;
+  final Map<String, dynamic> params;
 
-  // ImageUrlBuilder copyWith(options) {}
+  ImageUrlBuilder copyWith(
+      {Map<String, dynamic>? asset, Map<String, dynamic>? params}) {
+    return ImageUrlBuilder(this.client,
+        asset: asset ?? this.asset, params: params ?? this.params);
+  }
 
-  // image(source) {}
+  ImageUrlBuilder image(Map<String, dynamic> source) {
+    return copyWith(asset: source);
+  }
 
-  // ImageUrlBuilder blur(amount) {}
+  ImageUrlBuilder width(int pixels) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['w'] = pixels;
+    return copyWith(params: newParams);
+  }
 
-  // ImageUrlBuilder sharpen(amount) {}
+  ImageUrlBuilder height(int pixels) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['h'] = pixels;
+    return copyWith(params: newParams);
+  }
 
-  // ImageUrlBuilder invert() {}
+  ImageUrlBuilder size(int width, int height) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['h'] = height;
+    newParams['w'] = width;
+    return copyWith(params: newParams);
+  }
 
-  // ImageUrlBuilder rect(left, top, width, height) {}
+  // TODO: does not work
+  ImageUrlBuilder focalPoint(int x, int y) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['fp-x'] = x;
+    newParams['fp-y'] = y;
+    return copyWith(params: newParams);
+  }
 
-  // ImageUrlBuilder format(name) {}
+  ImageUrlBuilder blur(int amount) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['blur'] = amount;
+    return copyWith(params: newParams);
+  }
 
-  // ImageUrlBuilder auto(mode) {}
+  ImageUrlBuilder sharpen(int amount) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['sharp'] = amount;
+    return copyWith(params: newParams);
+  }
 
-  // ImageUrlBuilder orientation(angle) {}
+  ImageUrlBuilder invert(bool invert) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['invert'] = invert;
+    return copyWith(params: newParams);
+  }
 
-  // ImageUrlBuilder quality(value) {}
+  ImageUrlBuilder rect(int left, int top, int width, int height) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['rect'] = [left, top, width, height];
+    return copyWith(params: newParams);
+  }
 
-  // ImageUrlBuilder forceDownload(defaultFileName) {}
+  ImageUrlBuilder format(String name) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['fm'] = name;
+    return copyWith(params: newParams);
+  }
 
-  // flipHorizontal() {}
+  /// acceptable values 0, 90, 180, 270
+  ImageUrlBuilder orientation(int angle) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['or'] = angle;
+    return copyWith(params: newParams);
+  }
 
-  // flipVertical() {}
+  /// compression quality, where applicable. 0 - 100.
+  ImageUrlBuilder quality(int value) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['q'] = value;
+    return copyWith(params: newParams);
+  }
 
-  // crop(mode) {}
+  ImageUrlBuilder flipHorizontal() {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['flip_h'] = true;
+    return copyWith(params: newParams);
+  }
 
-  // fit(value) {}
+  ImageUrlBuilder flipVertical() {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['flip_v'] = true;
+    return copyWith(params: newParams);
+  }
 
-  // dpr(value) {}
+  ImageUrlBuilder crop(mode) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['crop'] = mode;
+    return copyWith(params: newParams);
+  }
 
-  // ignoreImageParams() {}
+  ImageUrlBuilder fit(value) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['fit'] = value;
+    return copyWith(params: newParams);
+  }
 
-  // String url() {
-  //   return "";
-  // }
+  ImageUrlBuilder dpr(value) {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['dpr'] = value;
+    return copyWith(params: newParams);
+  }
+
+  ImageUrlBuilder ignoreImageParams() {
+    Map<String, dynamic> newParams = Map.of(params);
+    newParams['ignoreImageParams'] = true;
+    return copyWith(params: newParams);
+  }
+
+  String url() {
+    return urlForImage(client, asset!, params);
+  }
 
   @override
   String toString() {
-    // return url();
-    return "";
-  }
-}
-
-class ImageUrlBuilderOptions {
-  // String baseUrl;
-}
-
-class SanityImage extends StatelessWidget {
-  SanityImage(this.asset, {this.width, this.height, this.blur});
-
-  Map<String, dynamic> asset;
-
-  int? width;
-  int? height;
-  int? blur;
-
-  String get assetUrl {
-    final params = [];
-    String result = asset['url'];
-
-    if (width != null) {
-      params.add('h=$width');
-    }
-
-    if (height != null) {
-      params.add('h=$height');
-    }
-
-    if (blur != null) {
-      params.add('blur=$blur');
-    }
-
-    return '${asset['url']}?${params.join('&')}';
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.network(assetUrl);
+    return url();
   }
 }
