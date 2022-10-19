@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+- Add `ImageUrlBuilder` class which can be used to generate sanity urls with options.
