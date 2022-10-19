@@ -1,39 +1,59 @@
-<!-- 
+<!--
 This README describes the package. If you publish this package to pub.dev,
 this README's contents appear on the landing page for your package.
 
 For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
 
 For general information about developing packages, see the Dart guide for
 [creating packages](https://dart.dev/guides/libraries/create-library-packages)
 and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
+[developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+# Flutter Sanity Image URL
+
+A dart package to quickly generate sanity image urls.
+Ported from [sanity-io/image-url](https://github.com/sanity-io/image-url).
+
+Intented to be used together with the [flutter_sanity package](https://pub.dev/packages/flutter_sanity)
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Respects crops and hotspots specified in Sanity.
+- Can be used to set the width and/or height of the image.
+- Provides a builder to access the processing options available from Sanity.
+
+<p align="center">
+    <img width="200px" src="./assets/screenshot.png"/>
+</p>
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+```bash
+dart pub add flutter_sanity
+dart pub add flutter_sanity_image_url
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+See `/example` for a full example.
+
+### Creating a builder:
 
 ```dart
-const like = 'sample';
+// sanityClient is an instance of SanityClient from flutter_sanity
+final builder = ImageUrlBuilder(sanityClient);
+
+ImageUrlBuilder urlFor(asset) {
+  return builder.image(asset);
+}
 ```
 
-## Additional information
+### Using the builder:
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+using the builder design patten the options can be added in a chain, always call `url()` at the end to get the actual url of the image.
+
+```dart
+Image.network(urlFor(image).size(200, 200).url())
+```
