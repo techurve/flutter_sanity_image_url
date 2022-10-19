@@ -1,6 +1,6 @@
 library flutter_sanity_image_url;
 
-import 'package:flutter_sanity_image_url/url_for_image.dart';
+import 'package:flutter_sanity_image_url/src/url_for_image.dart';
 
 class ImageUrlBuilder {
   const ImageUrlBuilder(this.client, {this.asset, Map<String, dynamic>? params})
