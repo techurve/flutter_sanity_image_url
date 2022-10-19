@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter_sanity_image_url/parseAssetId.dart';
+import 'package:flutter_sanity_image_url/src/parseAssetId.dart';
 
 String urlForImage(
     dynamic client, Map<String, dynamic> image, Map<String, dynamic> options) {
