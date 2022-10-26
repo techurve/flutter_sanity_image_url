@@ -4,6 +4,6 @@ import 'main.dart';
 
 final builder = ImageUrlBuilder(sanityClient);
 
-ImageUrlBuilder urlFor(asset) {
+ImageUrlBuilder urlFor(SanityImageSource asset) {
   return builder.image(asset);
 }
