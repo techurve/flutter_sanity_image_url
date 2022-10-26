@@ -1,12 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_sanity/flutter_sanity.dart';
 import 'package:flutter_sanity_image_url/flutter_sanity_image_url.dart';
 import 'package:sanity_image_app/sanity_image.dart';
 
-final sanityClient =
-    SanityClient(projectId: "projectId", dataset: "production");
+final sanityClient = SanityClient(projectId: "ckszsb2r", dataset: "production");
 
 void main() {
   runApp(const MyApp());
@@ -33,10 +30,11 @@ class MyHomePage extends StatelessWidget {
   final String title;
 
   Future<dynamic> fetchImage() async {
-    var query = r"*[_type=='meditation'][0]";
+    var query =
+        r"*[_type=='meditation'][0]{..., 'img': {'image': image, 'asset': image.asset->}}";
     var res = await sanityClient.fetch(query);
 
-    return Future.value(res["image"]);
+    return Future.value(res["img"]);
   }
 
   @override
@@ -73,37 +71,39 @@ class MyHomePage extends StatelessWidget {
 
                         if (snapshot.hasData) {
                           var image = snapshot.data as Map<String, dynamic>;
+                          var picture = SanityImage.fromJson(image);
 
                           return GridView.count(
                               shrinkWrap: true,
                               childAspectRatio: 3 / 2,
-                              padding: EdgeInsets.all(2.0),
+                              padding: const EdgeInsets.all(2.0),
                               mainAxisSpacing: 0,
                               crossAxisSpacing: 10,
                               crossAxisCount: 2,
                               children: [
                                 Image.network(
-                                    urlFor(image).size(200, 200).url()),
-                                Image.network(urlFor(image).blur(50).url()),
-                                Text("1. size = 200 x 200"),
-                                Text("2. blur = 50"),
-                                Image.network(urlFor(image)
-                                    .rect(3000, 3000, 400, 400)
+                                    urlFor(picture).size(200, 200).url()),
+                                Image.network(urlFor(picture).blur(50).url()),
+                                const Text("1. size = 200 x 200"),
+                                const Text("2. blur = 50"),
+                                Image.network(urlFor(picture)
+                                    .rect(200, 200, 400, 400)
                                     .url()),
-                                Image.network(urlFor(image).quality(50).url()),
-                                Text("3. cropped"),
-                                Text("4. quality set to 50"),
                                 Image.network(
-                                    urlFor(image).flipHorizontal().url()),
+                                    urlFor(picture).quality(50).url()),
+                                const Text("3. cropped"),
+                                const Text("4. quality set to 50"),
                                 Image.network(
-                                    urlFor(image).flipVertical().url()),
-                                Text("5. flipped horizontally"),
-                                Text("6. flipped vertically"),
+                                    urlFor(picture).flipHorizontal().url()),
+                                Image.network(
+                                    urlFor(picture).flipVertical().url()),
+                                const Text("5. flipped horizontally"),
+                                const Text("6. flipped vertically"),
                               ]);
                         }
                       }
 
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     })),
