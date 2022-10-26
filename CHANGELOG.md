@@ -11,3 +11,7 @@
   - `SanityColor`
 - Change the builder to use `SanityImageSource` as an asset input, which is either `SanityAsset` or `SanityImage`.
 - Add `fromJson` methods for all new model classes, which increases ease of use for sanity features such as `lqip` and the palette.
+
+## 0.0.3
+
+- Various bugfixes.
