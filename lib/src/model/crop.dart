@@ -22,6 +22,14 @@ class Crop {
         (asset.width - right * asset.width - cropLeft).round(),
         (asset.height - bottom * asset.height - cropTop).round());
   }
+
+  static Crop fromJson(Map<String, dynamic> json) {
+    return Crop(
+        left: double.tryParse(json['left'].toString()) ?? 0,
+        top: double.tryParse(json['top'].toString()) ?? 0,
+        right: double.tryParse(json['right'].toString()) ?? 0,
+        bottom: double.tryParse(json['bottom'].toString()) ?? 0);
+  }
 }
 
 class LTWH {

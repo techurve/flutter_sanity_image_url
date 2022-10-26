@@ -54,11 +54,7 @@ String specToImageUrl(
         rect[2] != asset.height ||
         rect[3] != asset.width;
 
-    // do not perform crop if it is larger than image
-    bool isValidCrop =
-        (rect[0] + rect[2] < asset.width) && (rect[1] + rect[3] < asset.height);
-
-    if (isEffectiveCrop && isValidCrop) {
+    if (isEffectiveCrop) {
       urlParams.add('rect=${rect.join(',')}');
     }
     options.remove('rect');

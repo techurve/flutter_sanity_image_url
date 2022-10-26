@@ -31,7 +31,7 @@ class MyHomePage extends StatelessWidget {
 
   Future<dynamic> fetchImage() async {
     var query =
-        r"*[_type=='meditation'][0]{..., 'img': {'image': image, 'asset': image.asset->}}";
+        r"*[_type=='meditation' && slug.current=='bewust-ademen'][0]{..., 'img': {'image': image, 'asset': image.asset->}}";
     var res = await sanityClient.fetch(query);
 
     return Future.value(res["img"]);

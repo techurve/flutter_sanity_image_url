@@ -114,8 +114,12 @@ class SanityImage extends SanityImageSource {
     return SanityImage(
       ref: json['image']['asset']['_ref'],
       asset: SanityAsset.fromJson(json['asset']),
-      c: json['image']['crop'],
-      h: json['image']['hotspot'],
+      c: json['image']?['crop'] == null
+          ? null
+          : Crop.fromJson(json['image']?['crop']),
+      h: json['image']?['hotspot'] == null
+          ? null
+          : Hotspot.fromJson(json['image']?['hotspot']),
     );
   }
 
