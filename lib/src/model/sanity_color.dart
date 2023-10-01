@@ -14,17 +14,37 @@ class SanityColor {
       HexColor.fromHex(json['title']),
     );
   }
+
+  /// returns a [String] representation of the [SanityColor] object.
+  @override
+  String toString() {
+    return "background: ${background.toHex()}, foreground: ${foreground.toHex()}, title: ${title.toHex()}";
+  }
 }
 
 extension HexColor on Color {
-  /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
+  /// Parses a hexadecimal color [String] into a [Color] object.
+  /// String is in the format:
+  /// - "aabbcc"
+  /// - "ffaabbcc"
+  /// - "abc"
+  /// with an optional leading "#".
   static Color fromHex(String hexString) {
     final buffer = StringBuffer();
-    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
-    buffer.write(hexString.replaceFirst('#', ''));
+    if (hexString.length == 6 || hexString.length == 7) {
+      buffer.write('ff');
+      buffer.write(hexString.replaceFirst('#', ''));
+    } else if (hexString.length == 3 || hexString.length == 4) {
+      buffer.write('ff');
+      String rgb = hexString.replaceFirst("#", '');
+      buffer.write(rgb[0] * 2);
+      buffer.write(rgb[1] * 2);
+      buffer.write(rgb[2] * 2);
+    }
     return Color(int.parse(buffer.toString(), radix: 16));
   }
 
+  /// Returns a hexadecimal [String] representation of this [Color].
   /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
   String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
       '${alpha.toRadixString(16).padLeft(2, '0')}'
