@@ -32,4 +32,19 @@ class SanityPalette {
       SanityColor.fromJson(json['vibrant']),
     );
   }
+
+  /// Returns a string representation of the color palette.
+  @override
+  String toString() {
+    StringBuffer buffer = StringBuffer();
+    buffer.write("Color Palette: \n");
+    buffer.write("- Dark Muted: ($darkMuted),\n");
+    buffer.write("- Dark Vibrant: ($darkVibrant),\n");
+    buffer.write("- Dominant: ($lightMuted),\n");
+    buffer.write("- Light Muted: ($lightVibrant),\n");
+    buffer.write("- Muted: ($muted),\n");
+    buffer.write("- Vibrant: ($vibrant)\n");
+
+    return buffer.toString();
+  }
 }
