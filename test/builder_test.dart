@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_sanity_image_url/flutter_sanity_image_url.dart';
 import 'package:flutter_sanity_image_url/src/model/crop.dart';
 import 'package:flutter_sanity_image_url/src/model/hotspot.dart';
