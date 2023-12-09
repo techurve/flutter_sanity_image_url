@@ -1,3 +1,4 @@
+/// Reference Data for an Image.
 class ReferenceData {
   ReferenceData(this.id, this.width, this.height, this.format);
 
@@ -6,7 +7,8 @@ class ReferenceData {
   int height;
   String format;
 
-  get filename {
+  /// gets the correctly formatted filename String for use in an image url.
+  String get filename {
     return '$id-${width}x$height.$format';
   }
 }

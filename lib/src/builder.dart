@@ -3,6 +3,7 @@ library flutter_sanity_image_url;
 import 'package:flutter_sanity_image_url/src/model/sanity_image.dart';
 import 'package:flutter_sanity_image_url/src/url_for_image.dart';
 
+/// A Image Url Builder used to configure image transforms from the cdn.
 class ImageUrlBuilder {
   ImageUrlBuilder(this.client, {this.asset, Map<String, dynamic>? params})
       : params = params ?? {};
@@ -128,6 +129,8 @@ class ImageUrlBuilder {
     return copyWith(params: newParams);
   }
 
+  /// Returns the final url with the requested parameters.
+  /// Throws an [Exception] if the asset is null.
   String url() {
     if (asset == null) {
       throw Exception('a sanity image source needs to be added with .image()');
@@ -135,6 +138,7 @@ class ImageUrlBuilder {
     return urlForImage(client, asset!, params);
   }
 
+  /// Returns a [String] representation of the builder. Which is the url.
   @override
   String toString() {
     return url();

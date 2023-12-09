@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+/// A model for Sanity Color of an image. contains background, foreground and recommended title colors.
 class SanityColor {
   SanityColor(this.background, this.foreground, this.title);
 
@@ -7,6 +8,7 @@ class SanityColor {
   Color foreground;
   Color title;
 
+  /// parses [json] into a [SanityColor].
   factory SanityColor.fromJson(json) {
     return SanityColor(
       HexColor.fromHex(json['background']),
@@ -22,6 +24,7 @@ class SanityColor {
   }
 }
 
+/// An extension providing hexadecimal string conversions on [Color].
 extension HexColor on Color {
   /// Parses a hexadecimal color [String] into a [Color] object.
   /// String is in the format:

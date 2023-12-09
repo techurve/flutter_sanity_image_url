@@ -2,10 +2,10 @@ import 'package:flutter_sanity_image_url/flutter_sanity_image_url.dart';
 import 'package:flutter_sanity_image_url/src/model/crop.dart';
 import 'package:flutter_sanity_image_url/src/model/hotspot.dart';
 import 'package:flutter_sanity_image_url/src/model/reference_data.dart';
-import 'package:flutter_sanity_image_url/src/model/sanity_asset.dart';
 
 const example = 'image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg';
 
+/// A model for all types of Sanity Image sources.
 abstract class SanityImageSource {
   const SanityImageSource({required this.id});
 
@@ -15,6 +15,8 @@ abstract class SanityImageSource {
     return id;
   }
 
+  /// parses the `id` of a reference.
+  /// from a [String] id and returns [ReferenceData].
   ReferenceData parseAssetId() {
     final refSplit = id.split('-');
 
@@ -32,6 +34,9 @@ abstract class SanityImageSource {
   }
 }
 
+/// A model for a Sanity Image.
+/// Contains the [SanityAsset], which is the minimum information needed to show an image.
+/// Also contains the [Crop] and [Hotspot] which signal how to format the image.
 class SanityImage extends SanityImageSource {
   const SanityImage({required String ref, this.c, this.h, this.asset})
       : super(id: ref);
@@ -40,6 +45,7 @@ class SanityImage extends SanityImageSource {
   final Crop? c;
   final Hotspot? h;
 
+  /// Parses [json] into a [SanityImage].
   /// accepts either a Sanity Image which would look like this:
   /// query would look like: `*[_type=='meditation']{image}`
   /// ```json
@@ -95,6 +101,8 @@ class SanityImage extends SanityImageSource {
         'unable to parse SanityImage from ${json.toString()}, try to change your query.');
   }
 
+  /// parses a [json] with image data.
+  /// returns a [SanityImage].
   static SanityImage _fromImageQuery(Map<String, dynamic> json) {
     return SanityImage(
       ref: json['asset']['_ref'],
@@ -103,6 +111,8 @@ class SanityImage extends SanityImageSource {
     );
   }
 
+  /// parses a [json] with asset data.
+  /// returns a [SanityImage].
   static SanityImage _fromAssetQuery(Map<String, dynamic> json) {
     return SanityImage(
       ref: json['_id'],
@@ -110,6 +120,8 @@ class SanityImage extends SanityImageSource {
     );
   }
 
+  /// parses the combined data from an asset from [json].
+  /// returns a [SanityImage].
   static SanityImage _fromBothQuery(Map<String, dynamic> json) {
     return SanityImage(
       ref: json['image']['asset']['_ref'],
@@ -123,18 +135,22 @@ class SanityImage extends SanityImageSource {
     );
   }
 
+  /// gets the crop of an image.
   Crop get crop {
     return c ?? Crop(left: 0, top: 0, right: 0, bottom: 0);
   }
 
+  /// gets the hotspot of an image.
   Hotspot get hotspot {
     return h ?? Hotspot(1, 1, 0.5, 0.5);
   }
 
+  /// gets the palette of an image.
   SanityPalette? get palette {
     return this.asset?.palette;
   }
 
+  /// gets the low quality image preview of an image.
   String? get lqip {
     return this.asset?.lqip;
   }

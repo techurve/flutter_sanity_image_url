@@ -1,6 +1,7 @@
 import 'package:flutter_sanity_image_url/src/model/sanity_image.dart';
 import 'package:flutter_sanity_image_url/src/model/sanity_palette.dart';
 
+/// A model for a Sanity Asset.
 class SanityAsset extends SanityImageSource {
   const SanityAsset(
       {required String id, required this.url, this.lqip, this.palette})
@@ -10,6 +11,7 @@ class SanityAsset extends SanityImageSource {
   final String url;
   final SanityPalette? palette;
 
+  /// parses [json] into a [SanityAsset].
   static SanityAsset fromJson(json) {
     String? lqip;
 
