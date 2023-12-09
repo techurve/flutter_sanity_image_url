@@ -51,8 +51,11 @@ String specToImageUrl(
 
     bool isEffectiveCrop = rect[0] != 0 ||
         rect[1] != 0 ||
-        rect[2] != asset.height ||
-        rect[3] != asset.width;
+        rect[3] != asset.height ||
+        rect[2] != asset.width;
+
+    // print("asset width ${asset.width} == ${rect[2]}");
+    // print(isEffectiveCrop);
 
     if (isEffectiveCrop) {
       urlParams.add('rect=${rect.join(',')}');
