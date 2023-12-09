@@ -31,7 +31,7 @@ Easily make use of all of the image related features provided by Sanity:
   - Access to `lqip` to implement low resolution image placeholders.
 
 <p align="center">
-    <img width="200px" src="./assets/screenshot.png"/>
+    <img width="200px" src="https://raw.githubusercontent.com/techurve/flutter_sanity_image_url/improve-package/assets/screenshot.png"/>
 </p>
 
 ## Getting started
@@ -113,7 +113,3 @@ print(myImage.lqip)
 2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAYHBf/EACYQAAIBAwIEBwAAAAAAAAAAAAECAwAEBREhBgcVMhITFjFBYZH/xAAWAQEBAQAAAAAAAAAAAAAAAAAEAQL/xAAaEQEAAgMBAAAAAAAAAAAAAAABAAIREkFR/9oADAMBAAIRAxEAPwBl5ZX11aYSWNoAYUGsKL861u+rlRX6pD5ECA+NgdhUoXi2+wuIjjtghdx3n32pMyufyOZuNbyclSewbL+UuplVh7OACUnN8wNcjJ0mGOS0GyuynVvuip/FG0kYKysgGwAore1TkmtvZ//Z
 */
 ```
-
-**this output can be shown as a base 64 image:**
-
-<img width=100 src="data:image/png;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAYHBf/EACYQAAIBAwIEBwAAAAAAAAAAAAECAwAEBREhBgcVMhITFjFBYZH/xAAWAQEBAQAAAAAAAAAAAAAAAAAEAQL/xAAaEQEAAgMBAAAAAAAAAAAAAAABAAIREkFR/9oADAMBAAIRAxEAPwBl5ZX11aYSWNoAYUGsKL861u+rlRX6pD5ECA+NgdhUoXi2+wuIjjtghdx3n32pMyufyOZuNbyclSewbL+UuplVh7OACUnN8wNcjJ0mGOS0GyuynVvuip/FG0kYKysgGwAore1TkmtvZ//Z" />
