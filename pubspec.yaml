@@ -1,5 +1,5 @@
 name: flutter_sanity_image_url
-description: A flutter package to quickly generate sanity image urls.
+description: Flutter plugin for displaying images from Santiy CMS. Also provides useful image metadata such as low quality image placeholders, and image color palette.
 version: 0.0.3
 homepage: https://github.com/techurve/flutter_sanity_image_url
 repository: https://github.com/techurve/flutter_sanity_image_url
