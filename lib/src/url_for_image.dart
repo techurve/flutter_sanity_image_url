@@ -39,9 +39,9 @@ String specToImageUrl(
   List urlParams = [];
 
   if (options.containsKey('flip_v') || options.containsKey('flip_h')) {
-    String flip_v = options['flip_v'] != null ? 'v' : '';
-    String flip_h = options['flip_h'] != null ? 'h' : '';
-    urlParams.add('flip=$flip_h$flip_v');
+    String flipV = options['flip_v'] != null ? 'v' : '';
+    String flipH = options['flip_h'] != null ? 'h' : '';
+    urlParams.add('flip=$flipH$flipV');
     options.remove('flip_v');
     options.remove('flip_h');
   }
@@ -51,8 +51,11 @@ String specToImageUrl(
 
     bool isEffectiveCrop = rect[0] != 0 ||
         rect[1] != 0 ||
-        rect[2] != asset.height ||
-        rect[3] != asset.width;
+        rect[3] != asset.height ||
+        rect[2] != asset.width;
+
+    // print("asset width ${asset.width} == ${rect[2]}");
+    // print(isEffectiveCrop);
 
     if (isEffectiveCrop) {
       urlParams.add('rect=${rect.join(',')}');

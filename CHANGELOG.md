@@ -15,3 +15,10 @@
 ## 0.0.3
 
 - Various bugfixes.
+
+## 0.1.0
+
+- Add widget `ImagePlaceholder` which can show a Low Quality Image Placeholder while loading an image.
+- Add example usages in the `/example` app:
+  - example of use of color pallette.
+  - example of use of image placeholder.

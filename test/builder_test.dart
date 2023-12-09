@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_sanity_image_url/flutter_sanity_image_url.dart';
 import 'package:flutter_sanity_image_url/src/model/crop.dart';
 import 'package:flutter_sanity_image_url/src/model/hotspot.dart';
@@ -60,7 +58,7 @@ void main() {
               .width(21)
               .height(10)
               .url(),
-          'https://cdn.sanity.io/images/projectId/production/38de0164654e709a07ca57d0d7d3ab29ce187dd5-1200x800.jpg?w=21&h=10');
+          'https://cdn.sanity.io/images/projectId/production/38de0164654e709a07ca57d0d7d3ab29ce187dd5-1200x800.jpg?rect=0,115,1200,571&w=21&h=10');
     });
 
     test('width and height on image, with size method.', () {
@@ -71,7 +69,7 @@ void main() {
                       'image-38de0164654e709a07ca57d0d7d3ab29ce187dd5-1200x800-jpg'))
               .size(21, 10)
               .url(),
-          'https://cdn.sanity.io/images/projectId/production/38de0164654e709a07ca57d0d7d3ab29ce187dd5-1200x800.jpg?h=10&w=21');
+          'https://cdn.sanity.io/images/projectId/production/38de0164654e709a07ca57d0d7d3ab29ce187dd5-1200x800.jpg?rect=0,115,1200,571&h=10&w=21');
     });
 
     test('blur image', () {
@@ -94,7 +92,7 @@ void main() {
               .width(21)
               .height(10)
               .toString(),
-          'https://cdn.sanity.io/images/projectId/production/38de0164654e709a07ca57d0d7d3ab29ce187dd5-1200x800.jpg?w=21&h=10');
+          'https://cdn.sanity.io/images/projectId/production/38de0164654e709a07ca57d0d7d3ab29ce187dd5-1200x800.jpg?rect=0,115,1200,571&w=21&h=10');
     });
 
     test('set image quality.', () {

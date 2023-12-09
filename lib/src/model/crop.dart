@@ -1,5 +1,7 @@
 import 'package:flutter_sanity_image_url/src/model/reference_data.dart';
 
+/// A Crop for an Image.
+/// Based on cropping values from left, right, top and bottom.
 class Crop {
   Crop(
       {required this.bottom,
@@ -12,6 +14,8 @@ class Crop {
   double top;
   double bottom;
 
+  /// Converts the crop data from left, right top and bottom.
+  /// to left and top relative with width and height values.
   LTWH toImageCoordinates(ReferenceData asset) {
     final cropLeft = (left * asset.width).round();
     final cropTop = (top * asset.height).round();
@@ -23,6 +27,7 @@ class Crop {
         (asset.height - bottom * asset.height - cropTop).round());
   }
 
+  /// Parses [json] into a Crop object.
   static Crop fromJson(Map<String, dynamic> json) {
     return Crop(
         left: double.tryParse(json['left'].toString()) ?? 0,
@@ -32,6 +37,7 @@ class Crop {
   }
 }
 
+/// A grouping of left, top, width and height values.
 class LTWH {
   LTWH(this.left, this.top, this.width, this.height);
 

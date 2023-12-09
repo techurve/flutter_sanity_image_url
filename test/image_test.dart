@@ -11,6 +11,8 @@ void main() {
         '_id': 'myId',
       }
     });
+
+    expect(image.asset?.id, 'myId');
   });
 
   test('test both image and asset 1', () {
@@ -27,6 +29,9 @@ void main() {
         '_id': 'myId',
       }
     });
+
+    expect(image.ref,
+        'image-fd110b36d8136c66f4dd950be748c7486871182d-3913x4891-jpg');
   });
 
   test('test both image and asset 2', () {
@@ -57,5 +62,7 @@ void main() {
         '_id': 'myId',
       }
     });
+
+    expect(image.c?.bottom, 0);
   });
 }
